@@ -1,148 +1,42 @@
-# Development Log
+## Final Development Log — DraftSpace
 
-## Project: DraftSpace – Collaborative Document Editor
+**Date:** 14 November 2026
 
-### 1. Project Overview
+### Deployment
 
-Building a lightweight collaborative document editor inspired by Google Docs as part of the Ajaia LLC AI-Native Full Stack Developer assessment.
+- Created a PythonAnywhere account and configured a Python 3.12 web application.
+- Cloned the DraftSpace GitHub repository onto PythonAnywhere.
+- Created a virtual environment named `draftenv`.
+- Installed project dependencies from `requirements.txt`.
+- Verified that the Flask application imports successfully on the server.
+- Configured the WSGI file to load the Flask application.
+- Generated a secure secret key for the deployed application.
+- Connected the project directory and virtual environment to the web app.
+- Successfully deployed DraftSpace at https://iamdamilola.pythonanywhere.com/.
 
-The application allows users to create, manage, edit, upload, and share documents.
+### Live Application Testing
 
-### 2. Technology Stack
+- Confirmed that the deployed application loads successfully.
+- Tested login using the seeded `dami` and `alice` accounts in separate browser sessions.
+- Created and edited documents.
+- Tested rich-text formatting, including bold, italic, headings and lists.
+- Verified document persistence after refreshing the browser.
+- Tested document sharing between different users.
+- Confirmed that shared documents are accessible to the intended user.
+- Tested TXT file upload and editing.
 
-- Backend: Python with Flask
-- Database: SQLite
-- Frontend: HTML, CSS, JavaScript
-- Rich-text editor: Quill.js (CDN)
-- Authentication: Mocked login using Flask sessions
-- Testing: pytest
-- Deployment target: PythonAnywhere
+### Final Status
 
-### 3. Authentication Decision
+- Core document creation and editing: working.
+- Document persistence: working.
+- User access and sharing: tested successfully.
+- File upload: tested successfully.
+- Live deployment: successful.
+- Automated test: previously executed successfully, with 1 test passed.
 
-Implemented mocked authentication using three seeded users:
+### Remaining Submission Tasks
 
-- dami
-- alice
-- bob
-
-Users select a demo account from a login dropdown. Flask sessions maintain the selected user's identity.
-
-No passwords or production authentication system are implemented. This is a deliberate scope decision permitted by the assessment.
-
-### 4. Database Design
-
-Created three database tables:
-
-**users**
-
-- Stores available demo users.
-- Each user has a unique username.
-
-**documents**
-
-- Stores document titles and HTML content.
-- Records document ownership.
-- Tracks creation and last-update timestamps.
-
-**shares**
-
-- Records which users have access to shared documents.
-- Uses foreign keys to maintain relationships.
-- Prevents duplicate sharing records for the same document and user.
-
-SQLite foreign-key enforcement is enabled on database connections.
-
-### 5. Implemented Features
-
-**Login and sessions**
-
-- Login page with a demo-user dropdown.
-- Session-based user identification.
-- Logout functionality.
-
-**Dashboard**
-
-- Displays documents owned by the logged-in user.
-- Displays documents shared with the logged-in user.
-- Shows document titles and update timestamps.
-- Provides a new-document action.
-
-**Document creation**
-
-- Creates a new document with the default title "Untitled document".
-- Automatically assigns ownership to the logged-in user.
-- Redirects to the newly created document.
-
-**Document access control**
-
-- Implemented `get_doc_for_user(doc_id, user_id)`.
-- Checks document ownership and sharing permissions.
-- Returns the document and its role (`owner` or `shared`).
-- Returns no document when access is not permitted.
-- Unauthorized document requests return HTTP 404 to avoid revealing document existence.
-
-### 6. Automated Testing
-
-Created a pytest test for document access control.
-
-The test verifies:
-
-- A document owner can access their document.
-- An unrelated user cannot access it.
-- A user granted access through the shares table can access it.
-- A third user without permission remains blocked.
-
-**Latest test result:**
-
-- 1 test passed.
-- 1 warning reported.
-- Execution time: 1.09 seconds.
-
-### 7. AI-Assisted Development Workflow
-
-AI assistants were used to:
-
-- Help design the database schema.
-- Generate and review Flask application code.
-- Implement session-based mocked authentication.
-- Build document ownership and sharing access checks.
-- Review SQL queries and improve database access logic.
-- Develop the automated access-control test.
-- Explain implementation decisions and identify potential security issues.
-
-The generated code was reviewed, integrated, executed, and tested during development.
-
-### 8. Current Project Status
-
-Implemented:
-
-- Database schema and initialization.
-- Seeded demo users.
-- Mocked login and logout.
-- Flask session management.
-- Login protection.
-- Document dashboard.
-- Document creation.
-- Document ownership and sharing access checks.
-- Automated access-control test.
-
-Not yet implemented:
-
-- Rich-text document editor.
-- Saving and reopening edited content.
-- Document renaming.
-- Sharing interface.
-- File uploads.
-- Deployment.
-- Final documentation and walkthrough video.
-
-### 9. Next Development Step
-
-Build the document editor using Quill.js, including:
-
-- Rich-text formatting.
-- Loading existing document content.
-- Saving edited content to SQLite.
-- Reopening saved documents.
-- Access-controlled editing routes.
+- Finalize submission documentation.
+- Package source code into a ZIP archive.
+- Video not recorded in time.
+- Submit the live application, repository and demonstration links.
