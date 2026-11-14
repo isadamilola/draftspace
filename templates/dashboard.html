@@ -1,0 +1,28 @@
+<!doctype html>
+<title>My documents</title>
+
+{% for cat, msg in get_flashed_messages(with_categories=true) %}
+  <p style="color: {{ '#b00020' if cat == 'error' else '#1b7f3b' }}">{{ msg }}</p>
+{% endfor %}
+
+<h2>Upload a document</h2>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".txt,.md" required>
+    <button type="submit">Upload</button>
+</form>
+
+<p>Supported: .txt, .md (Maximum size: 500 KB)</p>
+
+<p>Signed in as <b>{{ user.username }}</b> · <a href="/logout">Switch user</a></p>
+<form method="post" action="/docs/new"><button>+ New document</button></form>
+
+<h2>Owned by me</h2>
+{% for d in owned %}
+  <p><a href="/docs/{{ d.id }}">{{ d.title }}</a> · {{ d.updated_at }}</p>
+{% else %}<p>None yet.</p>{% endfor %}
+
+<h2>Shared with me</h2>
+{% for d in shared %}
+  <p><a href="/docs/{{ d.id }}">{{ d.title }}</a> · from {{ d.owner }}</p>
+{% else %}<p>Nothing shared with you.</p>{% endfor %}

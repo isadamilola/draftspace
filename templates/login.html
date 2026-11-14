@@ -1,0 +1,12 @@
+<!doctype html>
+<title>Login</title>
+<h1>Pick a demo user</h1>
+<p>Mocked login for review (no passwords).</p>
+<form method="post">
+  <select name="username">
+    {% for u in users %}
+    <option>{{ u.username }}</option>
+    {% endfor %}
+  </select>
+  <button>Enter</button>
+</form>
